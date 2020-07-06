@@ -12,7 +12,7 @@
 using namespace std;
 
 SDL_Renderer * CFigure::C_pRenderer {nullptr};
-SDL_Rect	 * CFigure::C_gameArea  {0};
+SDL_Rect	  CFigure::C_gameArea  {0};
 
 
 CFigure::CFigure() :
@@ -20,7 +20,7 @@ CFigure::CFigure() :
 	m_hotPointRatio({0}),
 	m_speed({0})
 {
-	cout << "CFigure::CFigure()" << endl;
+
 }
 CFigure::CFigure(	int iLocX,
 		int iLocY,
@@ -42,7 +42,6 @@ CFigure::CFigure(	int iLocX,
 
 CFigure::~CFigure() {
 	// TODO Auto-generated destructor stub
-	cout << "~CFigure::~CFigure()" << endl;
 
 }
 
@@ -62,3 +61,12 @@ void CFigure::Draw(SDL_Texture*pTexture) const {
 	SDL_SetTextureBlendMode(pTexture, SDL_BLENDMODE_ADD);
 	SDL_RenderCopy(C_pRenderer, pTexture, NULL, &m_frame);
 }
+
+SDL_Point* CFigure::GetHotPoint(){
+	static SDL_Point hotPoint;
+	hotPoint.x = m_frame.x + m_frame.w * (m_hotPointRatio.x/100);
+	hotPoint.y = m_frame.y + m_frame.h * (m_hotPointRatio.y/100);
+	return &hotPoint;
+
+}
+

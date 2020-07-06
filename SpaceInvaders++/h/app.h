@@ -6,54 +6,56 @@
  */
 
 /* Définition des différentes constantes liées à notre fenêtre d'application */
-#define MAIN_WINDOW_SCALE					(3.0/1.5)
-#define MAIN_WINDOW_WIDTH					((int)(740*MAIN_WINDOW_SCALE))
-#define MAIN_WINDOW_HEIGHT					((int)(480*MAIN_WINDOW_SCALE))
+#define MAIN_WINDOW_SCALE					(2.0/1.0)
+#define MAIN_WINDOW_WIDTH					(int)(740*MAIN_WINDOW_SCALE)
+#define MAIN_WINDOW_HEIGHT					(int)(480*MAIN_WINDOW_SCALE)
 #define MAIN_WINDOW_TITLE					"Space Invaders"
 #define MAIN_WINDOW_BACKGROUND_IMAGE		"./Resources/Images/galaxy.jpeg"
-#define MAIN_WINDOW_PADDING_BOT				((int)(30*MAIN_WINDOW_SCALE))
-#define MAIN_WINDOW_PADDING_TOP				((int)(50*MAIN_WINDOW_SCALE))
-#define MAIN_WINDOW_PADDING_HRZ				((int)(20*MAIN_WINDOW_SCALE))
-#define MAIN_WINDOW_WAITING_SHIP_PADDING	((int)(5*MAIN_WINDOW_SCALE))
-#define MAIN_WINDOW_SCORE_PADDING			((int)(4*MAIN_WINDOW_SCALE))
+#define MAIN_WINDOW_PADDING_BOT				(int)(30*MAIN_WINDOW_SCALE)
+#define MAIN_WINDOW_PADDING_TOP				(int)(50*MAIN_WINDOW_SCALE)
+#define MAIN_WINDOW_PADDING_HRZ				(int)(20*MAIN_WINDOW_SCALE)
+#define MAIN_WINDOW_WAITING_SHIP_PADDING	(int)(5*MAIN_WINDOW_SCALE)
+#define MAIN_WINDOW_SCORE_PADDING			(int)(4*MAIN_WINDOW_SCALE)
 #define MAIN_ANIMATION_TICK					(20)
 #define MAIN_GAME_FONT						"./Resources/Fonts/ARCADE_N.TTF"
 #define MAIN_GAME_PAUSE						"./Resources/Images/pause.jpeg"
 #define MAIN_GAME_PLAY						"./Resources/Images/play.jpeg"
 #define MAIN_SIZE_PAUSE_PLAY				(30)
-#define MAIN_PAUSE_PLAY_X					((MAIN_WINDOW_WIDTH - MAIN_WINDOW_PADDING_HRZ) - MAIN_SIZE_PAUSE_PLAY)
-#define MAIN_PAUSE_PLAY_Y					((MAIN_WINDOW_PADDING_TOP / 3) - MAIN_SIZE_PAUSE_PLAY)
+#define MAIN_PAUSE_PLAY_X					(int)((MAIN_WINDOW_WIDTH - MAIN_WINDOW_PADDING_HRZ) - MAIN_SIZE_PAUSE_PLAY)
+#define MAIN_PAUSE_PLAY_Y					(int)((MAIN_WINDOW_PADDING_TOP / 3) - MAIN_SIZE_PAUSE_PLAY)
 
 
 /* Définition des différentes constantes liées au vaisseau spatial */
 #define SPACESHIP_IMAGE						"./Resources/Images/spaceship.jpeg"
 #define SPACESHIP_SIZE						(int)(50*MAIN_WINDOW_SCALE)
-#define SPACESHIP_HOT_RATIO_X				(0.5)
-#define SPACESHIP_HOT_RATIO_Y				(0)
+#define SPACESHIP_SIZE_RATIO				(0.5)
+#define SPACESHIP_SIZE_REDUCED				(int)(SPACESHIP_SIZE * SPACESHIP_SIZE_RATIO)
+#define SPACESHIP_HOT_RATIO_X				(int)(0.5)
+#define SPACESHIP_HOT_RATIO_Y				(int)(0)
 #define NB_LIFES_SHIP  						(5)
 
 
 /* Définition des différentes constantes liées aux aliens */
 #define ALIEN_IMAGE							"./Resources/Images/alien.jpeg"
-#define ALIEN_SIZE							(25*MAIN_WINDOW_SCALE)
-#define ALIEN_SPACING						(5*MAIN_WINDOW_SCALE)
+#define ALIEN_SIZE							(int)(25*MAIN_WINDOW_SCALE)
+#define ALIEN_SPACING						(int)(5*MAIN_WINDOW_SCALE)
 #define ALIEN_NB_ROW						(5)
 #define ALIEN_NB_COL						(10)
 #define ALIEN_HOT_RATIO_X			        (0.5)
 #define ALIEN_HOT_RATIO_Y					(0)
 #define ALIEN_SPEED_HRZ						(10)
-#define ALIEN_SPEED_VRT 					(20)
+#define ALIEN_SPEED_VRT 					(ALIEN_SIZE)
 
 
 /* Définition des différentes constantes liées aux rockets */
 #define ROCKET_IMAGE						"./Resources/Images/rocket.jpeg"
-#define ROCKET_WIDTH						(MAIN_WINDOW_WIDTH/(120*MAIN_WINDOW_SCALE))		//ROCKET_WIDTH*2 pour les rockets envoyés par les Aliens
-#define ROCKET_HEIGHT						(MAIN_WINDOW_HEIGHT/(12*MAIN_WINDOW_SCALE))  	//ROCKET_HEIGHT/2 pour les rockets envoyés par les Aliens
+#define ROCKET_ALIEN_IMAGE					"./Resources/Images/laser.png"
+#define ROCKET_WIDTH						(int)(MAIN_WINDOW_WIDTH/(120*MAIN_WINDOW_SCALE))		//ROCKET_WIDTH*2 pour les rockets envoyés par les Aliens
+#define ROCKET_HEIGHT						(int)(MAIN_WINDOW_HEIGHT/(12*MAIN_WINDOW_SCALE))  	//ROCKET_HEIGHT/2 pour les rockets envoyés par les Aliens
 #define ROCKET_HOT_RATIO_X			        (0.5)
 #define ROCKET_HOT_RATIO_Y					(0)
 #define ROCKET_SHIP_SPEED_VRT				(-6)
 #define ROCKET_ALIEN_SPEED_VRT				(2)
-#define ROCKET_SHIP_SHOOTED					(5)
 
 /* Définition des différentes constantes liées aux scores */
 #define SCORE_SIZE                          (75*MAIN_WINDOW_SCALE)
@@ -70,14 +72,4 @@
 #define GAME_OVER_SOUND 					"./Resources/Sounds/gameOver.wav"
 #define THEME_SOUND							"./Resources/Sounds/theme.wav"
 
-/* Définition des différentes masques */
-#define mBitsSet(f,m)			((f)|=(m))
-#define mBitsClr(f,m)			((f)&=(~(m)))
-#define mBitsTgl(f,m)			((f)^=(m))
-#define mBitsMsk(f,m)			((f)& (m))
-#define mIsBitsSet(f,m)			(((f)&(m))==(m))
-#define mIsBitsClr(f,m)			(((~(f))&(m))==(m))
 
-int AppNew(void);
-int AppRun(void);
-int AppDel(void);

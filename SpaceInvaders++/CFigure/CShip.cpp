@@ -9,7 +9,6 @@
 SDL_Texture * CShip::C_pTexture {nullptr};
 CShip::CShip() {
 	// TODO Auto-generated constructor stub
-	cout << "CShip::CShip()" << endl;
 
 }
 
@@ -30,7 +29,6 @@ CShip::CShip(	int iLocX,
 
 CShip::~CShip() {
 	// TODO Auto-generated destructor stub
-	cout << "~CShip::~CShip()" << endl;
 
 }
 
@@ -38,3 +36,16 @@ void CShip::Draw() const{
 	CFigure::Draw(C_pTexture);
 
 }
+
+void CShip::Move(int iLocX, int iLocY) {
+	iLocY = m_frame.x;
+	m_frame.x = iLocX-m_frame.w/2;
+
+	if( (m_frame.x < C_gameArea.x) || (m_frame.x + m_frame.w > C_gameArea.x+C_gameArea.w) ) { m_frame.x = iLocY; }
+}
+
+SDL_Point* CShip::GetHotPoint(){
+	return CFigure::GetHotPoint();
+}
+
+

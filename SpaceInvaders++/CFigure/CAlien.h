@@ -1,24 +1,24 @@
 /*
- * CShip.h
+ * CAliens.h
  *
- *  Created on: 29 juin 2020
+ *  Created on: 1 juil. 2020
  *      Author: armand
  */
 
-#ifndef CSHIP_H_
-#define CSHIP_H_
+#ifndef CALIEN_H_
+#define CALIEN_H_
 
 #include <CFigure.h>
-#include <iostream>
-using namespace std;
 
-class CShip : public CFigure {
+
+class CAlien: public CFigure {
 private:
 	static SDL_Texture * C_pTexture;
 
+
 public:
-	CShip();
-	CShip(
+	CAlien();
+	CAlien(
 		int iLocX,
 		int iLocY,
 		int iWidth,
@@ -28,10 +28,11 @@ public:
 		int iSpeedX,
 		int iSpeedY );
 
-	~CShip();
+	~CAlien();
 
 	void Draw() const;
-	void Move(int iLocX, int iLocY);
+	void Move();
+	void MoveReverse();
 	SDL_Point* GetHotPoint();
 
 public:
@@ -47,29 +48,33 @@ public:
 				SDL_DestroyTexture(C_pTexture);
 				C_pTexture = nullptr;
 			}
+		}
+
+	static CAlien*DrawFunc(CAlien*pAlien, void*pParam){
+		pAlien->Draw();
+		return pAlien;
 	}
-	static CShip*DrawFunc(CShip*pShip, void*pParam){
-			pShip->Draw();
-			return pShip;
+
+	static CAlien*MoveFunc(CAlien*pAlien, void*pParam){
+			pAlien->Move();
+			return pAlien;
 	}
-	static void* DeleteFunc(CShip*pShip){
-		delete pShip;
+
+	static CAlien*MoveReverseFunc(CAlien*pAlien, void*pParam){
+				pAlien->MoveReverse();
+				return pAlien;
+	}
+
+	static void* DeleteFunc(CAlien*pAlien){
+		delete pAlien;
 		return nullptr;
 	}
 
-	static void* MoveFunc(CShip*pShip, int iLocX, int iLocY){
-		pShip->Move(iLocX, iLocY);
-		return nullptr;
+	static SDL_Point*GetHotPointFunc(CAlien*pAlien){
+				return pAlien->GetHotPoint();
 	}
 
-	static SDL_Point*GetHotPointFunc(CShip*pShip){
-		return pShip->GetHotPoint();
-	}
-
-	static void*ShipRelife(void*pParam){
-
-		return nullptr;
-	}
+	static Uint32 ovf;
 };
 
-#endif /* CSHIP_H_ */
+#endif /* CALIENS_H_ */
